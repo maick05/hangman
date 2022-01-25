@@ -23,7 +23,12 @@ module.exports = (sequelize, DataTypes) => {
 					}
 				}
 			},
-			password: DataTypes.STRING
+			password: {
+				type: DataTypes.STRING,
+				validate: {
+					is: /^[0-9a-f]{64}$/i
+				}
+			}
 		},
 		{
 			sequelize,
