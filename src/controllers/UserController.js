@@ -3,13 +3,10 @@ const usersServices = new UsersServices()
 
 class UserController {
 	static async register(req, res) {
-		const { estudanteId, matriculaId } = req.params
+		const dados = req.body
 		try {
-			const umaMatricula = await usersServices.pegaUmRegistro({
-				id: matriculaId,
-				estudante_id: estudanteId
-			})
-			return res.status(200).json(umaMatricula)
+			usersServices.register(dados)
+			return res.status(200).json({ message: "User registered successful" })
 		} catch (error) {
 			return res.status(500).json(error.message)
 		}
