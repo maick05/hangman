@@ -3,4 +3,5 @@ config/default.json
 config/test.json
 .vscode
 .eslintrc.json
-.eslintrc
+*.eslintrc
+*.code-workspace
