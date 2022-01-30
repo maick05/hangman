@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": true
+        "es2021": true,
+        "jest/globals": true
     },
     "extends": [
         "standard"
@@ -15,6 +16,12 @@
         "semi": ["error", "never"],
         "indent": ["error", "tab"],
         "no-tabs": 0,
-        "space-before-function-paren":"off"
-    }
+        "space-before-function-paren":"off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+    },
+    "plugins": ["jest"]
 }

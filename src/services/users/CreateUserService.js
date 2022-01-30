@@ -3,8 +3,7 @@ const userDAO = new UserDAO()
 
 class CreateUserService {
 	async register(dados) {
-		console.log(userDAO)
-		return userDAO.criarRegistro(dados)
+		return await userDAO.criarRegistro(dados)
 	}
 }
 

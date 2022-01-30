@@ -5,8 +5,8 @@ class UserController {
 	static async register(req, res) {
 		const dados = req.body
 		try {
-			createUserService.register(dados)
-			return res.status(200).json({ message: "User registered successful" })
+			const retorno = await createUserService.register(dados)
+			return res.status(200).json(retorno)
 		} catch (error) {
 			return res.status(500).json(error.message)
 		}

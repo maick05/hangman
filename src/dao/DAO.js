@@ -14,7 +14,16 @@ class DAO {
 	}
 
 	async criarRegistro(dados) {
-		return database[this.nomeDoModelo].create(dados)
+		try {
+			const obj = await database[this.nomeDoModelo].create(dados)
+			return {
+				success: true,
+				message: "Created successful",
+				obj: obj
+			}
+		} catch (err) {
+			return { success: false, message: "Erro DB. ".err.message }
+		}
 	}
 
 	async atualizarRegistro(dadosAtualizados, id, transacao = {}) {
