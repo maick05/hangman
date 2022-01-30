@@ -1,23 +1,23 @@
 const database = require("../models")
 
-class Services {
+class DAO {
 	constructor(nomeDoModelo) {
 		this.nomeDoModelo = nomeDoModelo
 	}
 
-	async pegaTodosOsRegistros(where = {}) {
+	async pegarTodosOsRegistros(where = {}) {
 		return database[this.nomeDoModelo].findAll({ where: { ...where } })
 	}
 
-	async pegaUmRegistro(where = {}) {
+	async pegarUmRegistro(where = {}) {
 		return database[this.nomeDoModelo].findOne({ where: { ...where } })
 	}
 
-	async criaRegistro(dados) {
+	async criarRegistro(dados) {
 		return database[this.nomeDoModelo].create(dados)
 	}
 
-	async atualizaRegistro(dadosAtualizados, id, transacao = {}) {
+	async atualizarRegistro(dadosAtualizados, id, transacao = {}) {
 		return database[this.nomeDoModelo].update(
 			dadosAtualizados,
 			{ where: { id: id } },
@@ -25,7 +25,7 @@ class Services {
 		)
 	}
 
-	async atualizaRegistros(dadosAtualizados, where, transacao = {}) {
+	async atualizarRegistros(dadosAtualizados, where, transacao = {}) {
 		return database[this.nomeDoModelo].update(
 			dadosAtualizados,
 			{ where: { ...where } },
@@ -33,22 +33,22 @@ class Services {
 		)
 	}
 
-	async apagaRegistro(id) {
+	async apagarRegistro(id) {
 		return database[this.nomeDoModelo].destroy({ where: { id: id } })
 	}
 
-	async restauraRegistro(id) {
+	async restaurarRegistro(id) {
 		return database[this.nomeDoModelo].restore({ where: { id: id } })
 	}
 
-	async consultaRegistroApagado(id) {
+	async consultarRegistroApagado(id) {
 		return database[this.nomeDoModelo].findOne({
 			paranoid: false,
 			where: { id: Number(id) }
 		})
 	}
 
-	async encontraEContaRegistros(where = {}, agregadores) {
+	async encontrarEContaRegistros(where = {}, agregadores) {
 		return database[this.nomeDoModelo].findAndCountAll({
 			where: { ...where },
 			...agregadores
@@ -56,4 +56,4 @@ class Services {
 	}
 }
 
-module.exports = Services
+module.exports = DAO
