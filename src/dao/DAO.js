@@ -13,7 +13,7 @@ class DAO {
 		return database[this.nomeDoModelo].findOne({ where: { ...where } })
 	}
 
-	async criarRegistro(dados) {
+	async insert(dados) {
 		try {
 			const obj = await database[this.nomeDoModelo].create(dados)
 			return {
@@ -22,7 +22,7 @@ class DAO {
 				obj: obj
 			}
 		} catch (err) {
-			return { success: false, message: "Erro DB. ".err.message }
+			return { success: false, message: "Erro DB. " + err.message }
 		}
 	}
 

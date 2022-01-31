@@ -1,18 +1,6 @@
 const CreateUserService = require("../CreateUserService")
 
 describe("CreateUserService", () => {
-	// beforeAll(async () => {
-	// 	// const connection = await createConnection()
-	// 	// await connection.runMigrations()
-	// 	jest.useFakeTimers()
-	// })
-
-	// afterAll(async () => {
-	// 	const connection = getConnection()
-	// 	await connection.query("DELETE FROM usuarios")
-	// 	await connection.close()
-	// })
-
 	it("Deve retornar o id do usuário criado", async () => {
 		const createUserService = new CreateUserService()
 
@@ -23,6 +11,6 @@ describe("CreateUserService", () => {
 		})
 
 		expect(result.success).toBe(true)
-		// expect(result.obj).toHaveProperty("id")
+		expect(result.obj).toHaveProperty("id")
 	})
 })
