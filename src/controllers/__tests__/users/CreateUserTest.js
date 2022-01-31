@@ -9,7 +9,7 @@ describe("Route CreateUserService", () => {
 			{
 				url: urlBase + "/users/register",
 				form: {
-					nome: "UsuarioTest",
+					name: "UsuarioTest",
 					email: "usuario@test.com",
 					password: "senhaTeste"
 				}
