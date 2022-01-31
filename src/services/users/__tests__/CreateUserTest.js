@@ -3,7 +3,7 @@ const CreateUserService = require("../CreateUserService")
 jest.mock("../../../dao/UserDao")
 
 describe("CreateUserService", () => {
-	it("Deve retornar o id do usuário criado", async () => {
+	it("Should return the created user id", async () => {
 		const createUserService = new CreateUserService()
 
 		const result = await createUserService.register({
