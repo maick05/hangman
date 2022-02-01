@@ -1,4 +1,6 @@
 const request = require("request")
+const HelperString = require("../../../helpers/helperString")
+
 require("dotenv").config()
 const urlBase = process.env.baseUrl
 jest.mock("../../../dao/UserDao")
@@ -9,9 +11,10 @@ describe("Route CreateUserService", () => {
 			{
 				url: urlBase + "/users/register",
 				form: {
-					name: "UsuarioTest",
-					email: "usuario@test.com",
-					password: "senhaTeste"
+					name: "UsuarioTest_" + HelperString.generateRandomString(5),
+					email:
+						"usuario_" + HelperString.generateRandomString(5) + "@test.com",
+					password: "senhaTeste_" + HelperString.generateRandomString(5)
 				}
 			},
 			function (error, response, body) {
