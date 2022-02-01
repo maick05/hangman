@@ -1,5 +1,4 @@
 const bodyParser = require("body-parser")
-const HelperArray = require("../helpers/helperArray")
 
 const users = require("./usersRoute")
 
@@ -9,10 +8,8 @@ module.exports = (app) => {
 	app.use((err, req, res, next) => {
 		res.status(500).json({
 			success: false,
-			message: "Error -> " + err.message,
-			errors: HelperArray.arrayColumn(err.errors, "validatorKey"),
-			typeError: err.name,
-			err: err
+			message: err.getMessage(),
+			error: err.getErrorResponse()
 		})
 	})
 }

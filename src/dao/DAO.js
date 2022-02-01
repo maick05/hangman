@@ -1,5 +1,6 @@
 const database = require("../models")
 const HelperArray = require("../helpers/helperArray")
+const SequelizeError = require("../errors/SequelizeError")
 
 class DAO {
 	constructor(nomeDoModelo) {
@@ -15,16 +16,16 @@ class DAO {
 	}
 
 	async insert(dados) {
-		// try {
-		const obj = await database[this.nomeDoModelo].create(dados)
-		return {
-			success: true,
-			message: "Created successful",
-			obj: obj
+		try {
+			const obj = await database[this.nomeDoModelo].create(dados)
+			return {
+				success: true,
+				message: "Created successful",
+				obj: obj
+			}
+		} catch (err) {
+			this.handleError(err)
 		}
-		// } catch (err) {
-
-		// }
 	}
 
 	async atualizarRegistro(dadosAtualizados, id, transacao = {}) {
@@ -66,13 +67,7 @@ class DAO {
 	}
 
 	handleError(err) {
-		return {
-			success: false,
-			message: "Error DB. " + err.message,
-			errors: HelperArray.arrayColumn(err.errors, "validatorKey"),
-			typeError: err.name,
-			err: err
-		}
+		throw new SequelizeError(err)
 	}
 }
 

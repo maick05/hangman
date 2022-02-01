@@ -47,7 +47,7 @@ describe("Route /users/register Error Name Not Null", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["is_null"]))
+				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
 			}
 		)
 	})
@@ -67,7 +67,7 @@ describe("Route /users/register Error Email Not Null", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["is_null"]))
+				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
 			}
 		)
 	})
@@ -87,7 +87,7 @@ describe("Route /users/register Error Password Not Null", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["is_null"]))
+				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
 			}
 		)
 	})
@@ -108,7 +108,7 @@ describe("Route /users/register Error Name Length", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["len"]))
+				expect(body.error.errCodes).toEqual(expect.arrayContaining(["len"]))
 			}
 		)
 	})
@@ -129,7 +129,7 @@ describe("Route /users/register Error Invalid Email", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["isEmail"]))
+				expect(body.error.errCodes).toEqual(expect.arrayContaining(["isEmail"]))
 			}
 		)
 	})
@@ -150,7 +150,7 @@ describe("Route /users/register Error Password Length", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["len"]))
+				expect(body.error.errCodes).toEqual(expect.arrayContaining(["len"]))
 			}
 		)
 	})
@@ -182,7 +182,9 @@ describe("Route /users/register Error Email Not Unique", () => {
 				body = JSON.parse(body)
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
-				expect(body.errors).toEqual(expect.arrayContaining(["not_unique"]))
+				expect(body.error.errCodes).toEqual(
+					expect.arrayContaining(["not_unique"])
+				)
 			}
 		)
 	})
