@@ -4,10 +4,14 @@ const HelperObject = require("../../helpers/HelperObject")
 const userDAO = new UserDAO()
 
 class CreateUserService {
-	async register(dados) {
-		if (HelperObject.isEmpty(dados)) throw new EmptyDataError("user")
+	constructor(dados) {
+		this.dados = dados
+	}
 
-		return await userDAO.insert(dados)
+	async register() {
+		if (HelperObject.isEmpty(this.dados)) throw new EmptyDataError("user")
+
+		return await userDAO.insert(this.dados)
 	}
 }
 
