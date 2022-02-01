@@ -1,4 +1,4 @@
-const HelperArray = require("../helpers/helperArray")
+const HelperArray = require("../helpers/HelperArray")
 
 class MyError extends Error {
 	constructor(err) {
@@ -21,6 +21,10 @@ class MyError extends Error {
 			typeError: this.name,
 			err: this.errorInstance
 		}
+	}
+
+	getStatusCode() {
+		return 500
 	}
 }
 

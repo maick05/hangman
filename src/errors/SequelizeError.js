@@ -2,7 +2,7 @@ const MyError = require("./MyError")
 
 class SequelizeError extends MyError {
 	getMessage() {
-		return "Sequelize Error -> " + this.message
+		return "Sequelize Error DB -> " + this.message
 	}
 }
 

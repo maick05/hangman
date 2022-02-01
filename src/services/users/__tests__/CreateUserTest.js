@@ -1,3 +1,4 @@
+const EmptyDataError = require("../../../errors/DadosNaoFornecidos")
 const CreateUserService = require("../CreateUserService")
 jest.mock("../../../dao/UserDao")
 
@@ -13,5 +14,15 @@ describe("CreateUserService Green Test", () => {
 
 		expect(result.success).toBe(true)
 		expect(result.obj).toHaveProperty("id")
+	})
+})
+
+describe("CreateUserService Empty Data Error Test", () => {
+	it("Should return empty user data error", async () => {
+		const createUserService = new CreateUserService()
+
+		await expect(async () => {
+			await createUserService.register({})
+		}).rejects.toThrowError(EmptyDataError)
 	})
 })
