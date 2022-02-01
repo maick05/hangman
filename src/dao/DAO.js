@@ -1,4 +1,5 @@
 const database = require("../models")
+const HelperArray = require("../helpers/helperArray")
 
 class DAO {
 	constructor(nomeDoModelo) {
@@ -22,7 +23,7 @@ class DAO {
 				obj: obj
 			}
 		} catch (err) {
-			return { success: false, message: "Error DB. " + err.message, error: {} }
+			return this.handleError(err)
 		}
 	}
 
@@ -62,6 +63,14 @@ class DAO {
 			where: { ...where },
 			...agregadores
 		})
+	}
+
+	handleError(err) {
+		return {
+			success: false,
+			message: "Error DB. " + err.message,
+			errors: HelperArray.arrayColumn(err.errors, "validatorKey")
+		}
 	}
 }
 

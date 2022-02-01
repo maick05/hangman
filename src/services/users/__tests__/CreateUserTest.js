@@ -1,15 +1,14 @@
 const CreateUserService = require("../CreateUserService")
-const HelperString = require("../../../helpers/helperString")
 jest.mock("../../../dao/UserDao")
 
-describe("CreateUserService", () => {
+describe("CreateUserService Green Test", () => {
 	it("Should return the created user id", async () => {
 		const createUserService = new CreateUserService()
 
 		const result = await createUserService.register({
-			name: "UsuarioTest_" + HelperString.generateRandomString(5),
-			email: "usuario_" + HelperString.generateRandomString(5) + "@test.com",
-			password: "senhaTeste_" + HelperString.generateRandomString(5)
+			name: "UsuarioTest",
+			email: "usuario" + "@test.com",
+			password: "senhaTeste"
 		})
 
 		expect(result.success).toBe(true)
