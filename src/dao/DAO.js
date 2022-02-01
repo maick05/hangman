@@ -1,5 +1,4 @@
 const database = require("../models")
-const HelperArray = require("../helpers/helperArray")
 const SequelizeError = require("../errors/SequelizeError")
 
 class DAO {

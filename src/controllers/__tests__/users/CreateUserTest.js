@@ -45,7 +45,7 @@ describe("Route /users/register Error Name Not Null", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
 			}
@@ -65,7 +65,7 @@ describe("Route /users/register Error Email Not Null", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
 			}
@@ -85,7 +85,7 @@ describe("Route /users/register Error Password Not Null", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
 			}
@@ -106,7 +106,7 @@ describe("Route /users/register Error Name Length", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["len"]))
 			}
@@ -127,7 +127,7 @@ describe("Route /users/register Error Invalid Email", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["isEmail"]))
 			}
@@ -148,7 +148,7 @@ describe("Route /users/register Error Password Length", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["len"]))
 			}
@@ -180,7 +180,7 @@ describe("Route /users/register Error Email Not Unique", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
-				// expect(response.statusCode).toBe(200)
+				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(
 					expect.arrayContaining(["not_unique"])
