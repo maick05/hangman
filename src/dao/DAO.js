@@ -15,16 +15,16 @@ class DAO {
 	}
 
 	async insert(dados) {
-		try {
-			const obj = await database[this.nomeDoModelo].create(dados)
-			return {
-				success: true,
-				message: "Created successful",
-				obj: obj
-			}
-		} catch (err) {
-			return this.handleError(err)
+		// try {
+		const obj = await database[this.nomeDoModelo].create(dados)
+		return {
+			success: true,
+			message: "Created successful",
+			obj: obj
 		}
+		// } catch (err) {
+
+		// }
 	}
 
 	async atualizarRegistro(dadosAtualizados, id, transacao = {}) {
@@ -69,7 +69,9 @@ class DAO {
 		return {
 			success: false,
 			message: "Error DB. " + err.message,
-			errors: HelperArray.arrayColumn(err.errors, "validatorKey")
+			errors: HelperArray.arrayColumn(err.errors, "validatorKey"),
+			typeError: err.name,
+			err: err
 		}
 	}
 }

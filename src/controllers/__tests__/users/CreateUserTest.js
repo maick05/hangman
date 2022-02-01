@@ -16,10 +16,9 @@ describe("Route /users/register", (done) => {
 			{
 				url: urlBase + "/users/register",
 				form: {
-					name: "UsuarioTest_" + HelperString.generateRandomString(5),
-					email:
-						"usuario_" + HelperString.generateRandomString(5) + "@test.com",
-					password: "senhaTeste_" + HelperString.generateRandomString(5)
+					name: "UserTest_" + HelperString.generateRandomString(5),
+					email: "user_" + HelperString.generateRandomString(5) + "@test.com",
+					password: "passwordTest_" + HelperString.generateRandomString(5)
 				}
 			},
 			function (error, response, body) {
@@ -40,9 +39,8 @@ describe("Route /users/register Error Name Not Null", () => {
 			{
 				url: urlBase + "/users/register",
 				form: {
-					email:
-						"usuario_" + HelperString.generateRandomString(5) + "@test.com",
-					password: "senhaTeste_" + HelperString.generateRandomString(5)
+					email: "user_" + HelperString.generateRandomString(5) + "@test.com",
+					password: "passwordTest_" + HelperString.generateRandomString(5)
 				}
 			},
 			function (error, response, body) {
@@ -62,7 +60,7 @@ describe("Route /users/register Error Email Not Null", () => {
 				url: urlBase + "/users/register",
 				form: {
 					name: "Red Test",
-					password: "senhaTeste_" + HelperString.generateRandomString(5)
+					password: "passwordTest_" + HelperString.generateRandomString(5)
 				}
 			},
 			function (error, response, body) {
@@ -82,7 +80,7 @@ describe("Route /users/register Error Password Not Null", () => {
 				url: urlBase + "/users/register",
 				form: {
 					name: "Red Test",
-					email: "usuario_" + HelperString.generateRandomString(5) + "@test.com"
+					email: "user_" + HelperString.generateRandomString(5) + "@test.com"
 				}
 			},
 			function (error, response, body) {
@@ -102,9 +100,8 @@ describe("Route /users/register Error Name Length", () => {
 				url: urlBase + "/users/register",
 				form: {
 					name: "aa",
-					email:
-						"usuario_" + HelperString.generateRandomString(5) + "@test.com",
-					password: "senhaTeste_" + HelperString.generateRandomString(5)
+					email: "user_" + HelperString.generateRandomString(5) + "@test.com",
+					password: "passwordTest_" + HelperString.generateRandomString(5)
 				}
 			},
 			function (error, response, body) {
@@ -124,8 +121,8 @@ describe("Route /users/register Error Invalid Email", () => {
 				url: urlBase + "/users/register",
 				form: {
 					name: "Test_" + HelperString.generateRandomString(5),
-					email: "usuario_" + HelperString.generateRandomString(5) + "-com",
-					password: "senhaTeste_" + HelperString.generateRandomString(5)
+					email: "user_" + HelperString.generateRandomString(5) + "-com",
+					password: "passwordTest_" + HelperString.generateRandomString(5)
 				}
 			},
 			function (error, response, body) {
@@ -144,10 +141,9 @@ describe("Route /users/register Error Password Length", () => {
 			{
 				url: urlBase + "/users/register",
 				form: {
-					name: "aa",
-					email:
-						"usuario_" + HelperString.generateRandomString(5) + "@test.com",
-					password: "senhaTeste_" + HelperString.generateRandomString(5)
+					name: "User Test",
+					email: "user_" + HelperString.generateRandomString(5) + "@test.com",
+					password: "123"
 				}
 			},
 			function (error, response, body) {
@@ -155,6 +151,38 @@ describe("Route /users/register Error Password Length", () => {
 				// expect(response.statusCode).toBe(200)
 				expect(body.success).toBe(false)
 				expect(body.errors).toEqual(expect.arrayContaining(["len"]))
+			}
+		)
+	})
+})
+
+describe("Route /users/register Error Email Not Unique", () => {
+	request.post(
+		{
+			url: urlBase + "/users/register",
+			form: {
+				name: "User Test",
+				email: "user_test@test.com",
+				password: "passwordTest_" + HelperString.generateRandomString(5)
+			}
+		},
+		function (error, response, body) {}
+	)
+	it("Should return the not unique email validation error", async () => {
+		request.post(
+			{
+				url: urlBase + "/users/register",
+				form: {
+					name: "User Test",
+					email: "user_test@test.com",
+					password: "passwordTest_" + HelperString.generateRandomString(5)
+				}
+			},
+			function (error, response, body) {
+				body = JSON.parse(body)
+				// expect(response.statusCode).toBe(200)
+				expect(body.success).toBe(false)
+				expect(body.errors).toEqual(expect.arrayContaining(["not_unique"]))
 			}
 		)
 	})
