@@ -10,10 +10,10 @@ const config = cfg.get(env)
 const db = {}
 
 const sequelize = new Sequelize(
-	config.database.database,
-	config.database.username,
-	config.database.password,
-	config.database
+	config.database,
+	config.username,
+	config.password,
+	config
 )
 
 fs.readdirSync(__dirname)

@@ -22,7 +22,7 @@ class DAO {
 				obj: obj
 			}
 		} catch (err) {
-			return { success: false, message: "Erro DB. " + err.message }
+			return { success: false, message: "Error DB. " + err.message, error: {} }
 		}
 	}
 

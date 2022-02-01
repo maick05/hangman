@@ -15,24 +15,49 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			name: {
 				type: DataTypes.STRING,
-				allowNull: false
+				allowNull: false,
+				validate: {
+					len: {
+						args: [3],
+						msg: "Name must be at least 3 chars!"
+					}
+				}
 			},
 			email: {
 				type: DataTypes.STRING,
 				allowNull: false,
+				unique: {
+					name: "unique_constraint_email_user",
+					msg: "There is already an account with this email address!"
+				},
 				validate: {
+					len: {
+						args: [5],
+						msg: "Email must be at least 5 chars!"
+					},
+					notNull: {
+						args: true,
+						msg: "Email should be not null!"
+					},
 					isEmail: {
 						args: true,
-						msg: "Email inválido!"
+						msg: "Invalid Email!"
 					}
 				}
 			},
 			password: {
 				type: DataTypes.STRING,
-				allowNull: false
-				// validate: {
-				// 	is: /^[0-9a-f]{64}$/i
-				// }
+				allowNull: false,
+				validate: {
+					len: {
+						args: [4],
+						msg: "Password must be at least 4 chars!"
+					}
+					// is: {
+					// 	args: /^[0-9a-f]{64}$/i,
+					// 	msg: "Password must be at least: " + "One number and one letter"
+					// }
+				}
 			}
 		},
 		{
