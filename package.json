@@ -39,7 +39,17 @@
   },
   "jest": {
     "verbose": true,
-    
-    "testRegex": "__tests__/.*.test\\.js$"
+    "testRegex": "__tests__/.*.test\\.js$",
+    "roots": [
+      "<rootDir>",
+      "src"
+    ],
+    "modulePaths": [
+      "<rootDir>",
+      "src"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   }
 }
