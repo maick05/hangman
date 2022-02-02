@@ -38,10 +38,6 @@
     "nodemon": "^2.0.15"
   },
   "jest": {
-    "name": "hangman",
-    "jest": {
-      "verbose": true
-    },
     "testMatch": ["**/__tests__/*.js?(x)"]
   }
 }
