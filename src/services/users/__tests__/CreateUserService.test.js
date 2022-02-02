@@ -6,7 +6,7 @@ jest.mock("../../../dao/UserDAO")
 describe("CreateUserService Green Test", () => {
 	it("Should return the created user id", async () => {
 		const createUserService = new CreateUserService({
-			name: "UsuarioTest",
+			name: "Usuario_Test",
 			email: "usuario" + "@test.com",
 			password: "senhaTeste"
 		})
