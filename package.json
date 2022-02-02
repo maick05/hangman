@@ -39,6 +39,7 @@
   },
   "jest": {
     "verbose": true,
-    "testMatch": ["**/__tests__/*.test.js?(x)"]
+    
+    "testRegex": "__tests__/.*.test\\.js$"
   }
 }
