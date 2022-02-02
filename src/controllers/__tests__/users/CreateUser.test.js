@@ -45,6 +45,7 @@ describe("Route /users/register Error Name Not Null", () => {
 			},
 			function (error, response, body) {
 				body = JSON.parse(body)
+				// Erro com status 500
 				expect(response.statusCode).toBe(500)
 				expect(body.success).toBe(false)
 				expect(body.error.errCodes).toEqual(expect.arrayContaining(["is_null"]))
