@@ -38,6 +38,7 @@
     "nodemon": "^2.0.15"
   },
   "jest": {
-    "testMatch": ["**/__tests__/*.js?(x)"]
+    "verbose": true,
+    "testMatch": ["**/__tests__/*.test.js?(x)"]
   }
 }
