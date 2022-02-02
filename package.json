@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --detectOpenHandles --watchAll",
+    "test": "npx jest --detectOpenHandles",
     "start": "nodemon ./src/index.js"
   },
   "repository": {
@@ -36,5 +36,12 @@
     "eslint-plugin-promise": "^5.2.0",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15"
+  },
+  "jest": {
+    "name": "hangman",
+    "jest": {
+      "verbose": true
+    },
+    "testMatch": ["**/__tests__/*.js?(x)"]
   }
 }
