@@ -3,7 +3,7 @@ const CreateUserService = require("../CreateUserService")
 const path = require("path")
 
 console.log(path.resolve("src/services/dao/UserDao"))
-jest.mock("src/services/dao/UserDao")
+jest.mock("src/services/dao/UserDao/__mocks_/UserDao")
 
 describe("CreateUserService Green Test", () => {
 	it("Should return the created user id", async () => {
