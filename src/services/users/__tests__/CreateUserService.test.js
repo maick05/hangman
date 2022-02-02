@@ -1,5 +1,6 @@
 const EmptyDataError = require("../../../errors/DadosNaoFornecidos")
 const CreateUserService = require("../CreateUserService")
+console.log(__dirname)
 jest.mock("../../../dao/UserDao")
 
 describe("CreateUserService Green Test", () => {
