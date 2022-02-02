@@ -52,6 +52,9 @@
       "node_modules",
       "src"
     ],
-    "moduleFileExtensions": ["js", "jsx"]
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   }
 }
