@@ -1,7 +1,8 @@
 const EmptyDataError = require("../../../errors/DadosNaoFornecidos")
 const CreateUserService = require("../CreateUserService")
-console.log(__dirname)
-jest.mock("../../../dao/UserDao")
+const path = require("path")
+
+jest.mock(path.resolve(__dirname, "../../../dao/UserDao"))
 
 describe("CreateUserService Green Test", () => {
 	it("Should return the created user id", async () => {
