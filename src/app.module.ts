@@ -8,5 +8,5 @@ import { DomainModule } from './domain/domain.module';
   imports: [ConfigModule.forRoot(), DomainModule, ServiceModule],
   controllers: [],
   providers: [],
-})
+}) 
 export class AppModule {}

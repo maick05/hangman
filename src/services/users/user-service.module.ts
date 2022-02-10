@@ -7,13 +7,7 @@ import { CreateUserService } from './create-user-service';
 @Module({
   imports: [DomainModule],
   controllers: [UserController],
-  providers: [
-    {
-        inject: [UserRepository],
-        provide: UserServiceModule.CREATE_USER_SERVICE,
-        useFactory: (userRepository: UserRepository) => new CreateUserService(userRepository)
-    }
-],
+  providers: [CreateUserService], 
 })
 
 export class UserServiceModule {
