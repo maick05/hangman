@@ -4,7 +4,7 @@ import UserRepository from 'src/domain/repositories/user.repository';
 
 @Injectable()
 export class CreateUserService {
-    constructor(private userRepository: UserRepository){}
+    constructor(private readonly userRepository: UserRepository){}
   create(user: UserEntity)  {
       return this.userRepository.save(user);
   }

@@ -1,13 +1,13 @@
 import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
-import { CreateUserService } from 'src/usecases/users/create-user-service';
-import { UserServiceModule } from 'src/usecases/users/user-service.module';
+import { CreateUserService } from 'src/services/users/create-user-service';
+
 
 @Controller("users")
 export class UserController {
-  constructor(@Inject(UserServiceModule.CREATE_USER_SERVICE) private readonly createUserService: CreateUserService) {}
+  constructor(private readonly createUserService: CreateUserService) {}
 
   @Post("/register")
-  register(@Body() user) {
+  register(@Body() user) { 
     return this.createUserService.create(user);
   }
 }
