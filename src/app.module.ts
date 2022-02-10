@@ -3,9 +3,8 @@ import { ServiceModule } from './services/service.module';
 import { ConfigModule } from '@nestjs/config';
 import { DomainModule } from './domain/domain.module';
 
-
 @Module({
-  imports: [ConfigModule.forRoot(), DomainModule, ServiceModule],
+  imports: [ConfigModule.forRoot(), ServiceModule],
   controllers: [],
   providers: [],
 }) 
