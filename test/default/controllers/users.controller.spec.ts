@@ -32,7 +32,7 @@ describe('UserController', () => {
             providers: [
                 {
                     provide: 'UserEntity',
-                    useFactory: () => null
+                    useFactory: () => UserEntity
                 },
                 {
                     inject: ['UserEntity'],
