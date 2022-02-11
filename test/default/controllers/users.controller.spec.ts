@@ -39,7 +39,11 @@ describe('UserController', () => {
                     provide: 'UserRepository',
                     useFactory: (mock) => mockUserRepository
                 },
-                CreateUserService
+                {
+                    inject: ['UserRepository'],
+                    provide: 'CreateUserService',
+                    useClass: CreateUserService
+                }
             ]
         }).compile();
         sut = module.get<UsersController>(UsersController);

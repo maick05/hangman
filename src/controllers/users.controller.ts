@@ -3,7 +3,10 @@ import { CreateUserService } from 'src/services/users/create-user-service';
 
 @Controller('users')
 export class UsersController {
-    constructor(private readonly createUserService: CreateUserService) {}
+    constructor(
+        @Inject('CreateUserService')
+        private readonly createUserService: CreateUserService
+    ) {}
 
     @Post('/register')
     register(@Body() user) {
