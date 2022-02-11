@@ -5,11 +5,10 @@ import UserRepository from 'src/domain/repositories/user.repository';
 import { CreateUserService } from './create-user-service';
 
 @Module({
-  imports: [DomainModule],
-  controllers: [UserController],
-  providers: [CreateUserService], 
+    imports: [DomainModule],
+    controllers: [UserController],
+    providers: [CreateUserService]
 })
-
 export class UserServiceModule {
     static CREATE_USER_SERVICE: string = 'CreateUserService';
 }
