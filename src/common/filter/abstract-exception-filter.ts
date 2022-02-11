@@ -21,12 +21,20 @@ export abstract class AbstractExceptionFilter<ExceptionType>
         const response = ctx.getResponse();
         const request = ctx.getRequest();
 
-        const customResponse = this.makeCustomResponse(exception, request);
+        const customResponse = this.makeCustomResponse(
+            exception,
+            response,
+            request
+        );
 
         this.httpAdapter.reply(response, customResponse, customResponse.status);
     }
 
-    abstract makeCustomResponse(exception: ExceptionType, request: any);
+    abstract makeCustomResponse(
+        exception: ExceptionType,
+        response: Object,
+        request: Object
+    );
 
     // return {
     //     status: HttpStatus.INTERNAL_SERVER_ERROR,

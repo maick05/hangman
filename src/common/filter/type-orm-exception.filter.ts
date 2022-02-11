@@ -10,7 +10,11 @@ import { AbstractExceptionFilter } from './abstract-exception-filter';
 
 @Catch(TypeORMError)
 export class TypeOrmExceptionFilter extends AbstractExceptionFilter<TypeORMError> {
-    makeCustomResponse(exception: TypeORMError, request: any) {
+    makeCustomResponse(
+        exception: TypeORMError,
+        response: Object,
+        request: Object
+    ) {
         const errType: number = (exception as any).code;
         const errNum: number = (exception as any).errno;
         const msg: string = (exception as any).sqlMessage;

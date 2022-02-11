@@ -10,7 +10,11 @@ import { AbstractExceptionFilter } from './abstract-exception-filter';
 
 @Catch(HttpException)
 export class HttpExceptionFilter extends AbstractExceptionFilter<HttpException> {
-    makeCustomResponse(exception: HttpException, request: any) {
+    makeCustomResponse(
+        exception: HttpException,
+        response: Object,
+        request: Object
+    ) {
         return {
             status: exception.getStatus(),
             body: { res: exception.getResponse(), err: exception }
