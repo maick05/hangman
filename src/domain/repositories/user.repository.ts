@@ -1,15 +1,20 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
 import { UserEntity } from "../entities/user.entity";
-
+import { Repository } from "./repository";
+import { Repository as RepositoryTypeORM } from "typeorm";
 
 @Injectable()
-export default class UserRepository {
-    constructor(@InjectRepository(UserEntity) private readonly userEntityRepository: Repository<UserEntity>){}
+export default class UserRepository extends Repository<UserEntity>{
+    constructor(
+        @InjectRepository(UserEntity) 
+        protected readonly entityRepository: RepositoryTypeORM<UserEntity>
+    ){
+        super(entityRepository);
+    }
 
     async save(user: UserEntity): Promise<UserEntity> {
-        const userSaved: UserEntity = await this.userEntityRepository.save(user)
+        const userSaved: UserEntity = await this.entityRepository.save(user)
         return userSaved;
     }
 }
