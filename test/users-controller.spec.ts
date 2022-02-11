@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import sinon, { stubInterface } from 'ts-sinon';
 import { UserEntity } from 'src/domain/entities/user.entity';
 import { CreateUserService } from 'src/services/users/create-user-service';
+import { expect } from 'chai';
 
 type EntityType = UserEntity;
 
@@ -44,9 +45,7 @@ describe('UserController', () => {
         sut = module.get<UsersController>(UsersController);
     });
 
-    it('register', async () => {
-        const registerSpy = sinon.spy(mockUserRepository, 'save');
-
+    describe('register', () => {
         const requestUser = {
             id: null,
             name: 'User Test Name',
@@ -54,8 +53,19 @@ describe('UserController', () => {
             password: 'pass test'
         };
 
-        await sut.register(requestUser);
+        it('Should call with correct parameters', async () => {
+            const registerSpy = sinon.spy(mockUserRepository, 'save');
 
-        sinon.assert.calledOnceWithExactly(registerSpy, requestUser);
+            await sut.register(requestUser);
+
+            sinon.assert.calledOnceWithExactly(registerSpy, requestUser);
+
+            registerSpy.restore();
+        });
+
+        it('Should return correct values', async () => {
+            const actual = await sut.register(requestUser);
+            expect(actual.toString()).to.be.eq(makeFakeSavedUser().toString());
+        });
     });
 });
