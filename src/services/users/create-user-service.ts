@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { UserEntity } from 'src/domain/entities/user.entity';
 import UserRepository from 'src/domain/repositories/user.repository';
-import { Service } from '../service';
+import { IService } from '../service';
 
 @Injectable()
-export class CreateUserService extends Service<UserRepository> {
+export class CreateUserService implements IService<UserRepository> {
+    constructor(readonly repository: UserRepository) {}
+
     create(user: UserEntity) {
         return this.repository.save(user);
     }

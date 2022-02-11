@@ -1,3 +1,3 @@
-export abstract class Service<Repository> {
-    constructor(protected readonly repository: Repository) {}
+export interface IService<Repository> {
+    readonly repository: Repository;
 }
