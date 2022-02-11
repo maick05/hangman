@@ -1,7 +1,7 @@
 import { IsEmail, MinLength } from "class-validator";
 import {Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity("users")
 export class UserEntity {
 
     @PrimaryGeneratedColumn()

@@ -6,6 +6,6 @@ import { DomainModule } from './domain/domain.module';
 @Module({
   imports: [ConfigModule.forRoot(), ServiceModule],
   controllers: [],
-  providers: [],
+  providers: []
 }) 
 export class AppModule {}
