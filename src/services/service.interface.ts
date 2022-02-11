@@ -1,3 +1,3 @@
-export interface IService<Repository> {
+export interface Service<Repository> {
     readonly repository: Repository;
 }
