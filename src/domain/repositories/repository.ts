@@ -1,11 +1,14 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { EntityClassOrSchema } from "@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type";
-import { Entity, Repository as RepositoryTypeORM } from "typeorm";
-import { UserEntity } from "../entities/user.entity";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository as RepositoryTypeORM } from 'typeorm';
 
-export abstract class Repository<Entity>{
+@Injectable()
+export abstract class Repository<Entity> {
     constructor(
-         protected readonly entityRepository: RepositoryTypeORM<Entity>
-    ){}
+        protected readonly entityRepository: RepositoryTypeORM<Entity>
+    ) {}
+
+    async save(element: Entity): Promise<Entity> {
+        return await this.entityRepository.save(element);
+    }
 }
