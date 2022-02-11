@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { IsEmail, MinLength } from 'class-validator';
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -14,6 +15,7 @@ export class UserEntity {
     @Column({ length: 200 })
     email: string;
 
+    @Exclude()
     @MinLength(4)
     @Column({ length: 200 })
     password: string;
