@@ -1,9 +1,8 @@
 import { UsersController } from 'src/controllers/users.controller';
 import { Test, TestingModule } from '@nestjs/testing';
-import { sinon } from 'sinon';
-import { expect } from 'chai';
-import UserRepository from 'src/domain/repositories/user.repository';
+import sinon, { stubInterface } from 'ts-sinon';
 import { UserEntity } from 'src/domain/entities/user.entity';
+import { CreateUserService } from 'src/services/users/create-user-service';
 
 type EntityType = UserEntity;
 
@@ -22,23 +21,34 @@ const mockUserRepository = {
     }
 };
 
-let sut: UsersController;
+var sut: UsersController;
 
 describe('UserController', () => {
-    let controller = UsersController;
-
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            controllers: [controller]
+            imports: [],
+            controllers: [UsersController],
+            providers: [
+                {
+                    provide: 'UserEntity',
+                    useFactory: () => null
+                },
+                {
+                    inject: ['UserEntity'],
+                    provide: 'UserRepository',
+                    useFactory: (mock) => mockUserRepository
+                },
+                CreateUserService
+            ]
         }).compile();
-
-        sut = module.get<UsersController>(controller);
+        sut = module.get<UsersController>(UsersController);
     });
 
     it('register', async () => {
-        const registerSpy = sinon.spy(mockUserRepository, 'create');
+        const registerSpy = sinon.spy(mockUserRepository, 'save');
 
         const requestUser = {
+            id: null,
             name: 'User Test Name',
             email: 'user@test.com',
             password: 'pass test'
