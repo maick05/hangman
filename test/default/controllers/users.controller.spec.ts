@@ -1,13 +1,11 @@
 import { UsersController } from 'src/controllers/users.controller';
 import { Test, TestingModule } from '@nestjs/testing';
-import sinon, { stubInterface } from 'ts-sinon';
+import sinon from 'ts-sinon';
 import { UserEntity } from 'src/domain/entities/user.entity';
 import { CreateUserService } from 'src/services/users/create-user-service';
 import { expect } from 'chai';
 
-type EntityType = UserEntity;
-
-const makeFakeSavedUser = (): EntityType => {
+const makeFakeSavedUser = (): UserEntity => {
     return {
         id: 1,
         name: 'User Test Name',
@@ -17,7 +15,7 @@ const makeFakeSavedUser = (): EntityType => {
 };
 
 const mockUserRepository = {
-    async save(element: EntityType): Promise<EntityType> {
+    async save(element: UserEntity): Promise<UserEntity> {
         return makeFakeSavedUser();
     }
 };

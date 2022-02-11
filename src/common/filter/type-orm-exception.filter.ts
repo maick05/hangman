@@ -1,20 +1,26 @@
-import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
+import {
+    ArgumentsHost,
+    Catch,
+    ExceptionFilter,
+    HttpCode,
+    HttpStatus
+} from '@nestjs/common';
 import { TypeORMError } from 'typeorm';
+import { AbstractExceptionFilter } from './abstract-exception-filter';
 
 @Catch(TypeORMError)
-export class TypeOrmExceptionFilter implements ExceptionFilter {
-    catch(exception: TypeORMError, host: ArgumentsHost) {
-        const response = host.switchToHttp().getResponse();
-        const message: string = (exception as TypeORMError).message;
-        const code: number = (exception as any).code;
-        const customResponse = {
-            status: 500,
-            message: 'Something Went Wrong',
-            type: 'Internal Server Error',
+export class TypeOrmExceptionFilter extends AbstractExceptionFilter<TypeORMError> {
+    makeCustomResponse(exception: TypeORMError, request: any) {
+        const errType: number = (exception as any).code;
+        const errNum: number = (exception as any).errno;
+        const msg: string = (exception as any).sqlMessage;
 
-            errorCode: 300
+        return {
+            status: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: msg,
+            type: errType,
+            errorCode: errNum,
+            err: exception
         };
-
-        response.status(customResponse.status).json(customResponse);
     }
 }
