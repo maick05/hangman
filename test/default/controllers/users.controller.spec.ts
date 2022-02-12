@@ -4,6 +4,7 @@ import sinon from 'ts-sinon';
 import { UserEntity } from 'src/domain/entities/user.entity';
 import { CreateUserService } from 'src/services/users/create-user-service';
 import { expect } from 'chai';
+import { EmptyDataException } from 'src/common/exceptions/empty-data.exception';
 
 const makeFakeSavedUser = (): UserEntity => {
     return {
@@ -16,6 +17,12 @@ const makeFakeSavedUser = (): UserEntity => {
 
 const mockUserRepository = {
     async save(element: UserEntity): Promise<UserEntity> {
+        return makeFakeSavedUser();
+    }
+};
+
+const mockCreateUserService = {
+    async CreateUserService(element: UserEntity): Promise<UserEntity> {
         return makeFakeSavedUser();
     }
 };
@@ -55,9 +62,9 @@ describe('UserController', () => {
             password: 'pass test'
         };
 
-        it('Should call with correct parameters', async () => {
-            const registerSpy = sinon.spy(mockUserRepository, 'save');
+        const registerSpy = sinon.spy(mockUserRepository, 'save');
 
+        it('Should call with correct parameters', async () => {
             await sut.register(requestUser);
 
             sinon.assert.calledOnceWithExactly(registerSpy, requestUser);
@@ -68,6 +75,14 @@ describe('UserController', () => {
         it('Should return correct values', async () => {
             const actual = await sut.register(requestUser);
             expect(actual.toString()).to.be.eq(makeFakeSavedUser().toString());
+        });
+
+        it('Should throw a empty data exception', async () => {
+            const actual = () => sut.register({});
+            expect(actual).to.throw(
+                EmptyDataException,
+                'The user data cannot be empty'
+            );
         });
     });
 });
