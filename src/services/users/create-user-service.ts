@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { EmptyDataException } from 'src/common/exceptions/empty-data.exception';
+import { isEmpty } from 'src/common/helpers/object.helper';
 import { UserEntity } from 'src/domain/entities/user.entity';
 import UserRepository from 'src/domain/repositories/user.repository';
 import { Service } from '../service.interface';
@@ -11,6 +12,8 @@ export class CreateUserService implements Service<UserRepository> {
     ) {}
 
     create(user: UserEntity) {
+        if (isEmpty(user)) throw new EmptyDataException('user');
+
         return this.repository.save(user);
     }
 }
