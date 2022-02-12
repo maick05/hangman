@@ -10,7 +10,7 @@ export class CustomErrorExceptionFilter extends AbstractExceptionFilter<CustomEr
     ): CustomExceptionReponse {
         return {
             status: exception.getStatus(),
-            success: true,
+            success: false,
             message: exception.message,
             type: exception.type,
             errorCode: exception.errCode,
