@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
-import { ErrorException } from './abstract-error.exception';
+import { CustomErrorException } from './custom-error.exception';
 
-export class EmptyDataException extends ErrorException {
+export class EmptyDataException extends CustomErrorException {
     constructor(element: string = '') {
         super(
             'The ' + element + ' data cannot be empty',

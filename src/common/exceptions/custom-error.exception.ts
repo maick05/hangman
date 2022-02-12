@@ -1,8 +1,6 @@
 import { HttpException } from '@nestjs/common';
 
-export abstract class ErrorException extends HttpException {
-    public type: string;
-
+export class CustomErrorException extends HttpException {
     constructor(
         public message: string,
         status: number,
@@ -11,7 +9,7 @@ export abstract class ErrorException extends HttpException {
         super(message, status);
     }
 
-    getTypeError(): string {
+    get type(): string {
         return this.constructor.name;
     }
 }

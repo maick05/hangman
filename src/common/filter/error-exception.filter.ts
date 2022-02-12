@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, HttpStatus } from '@nestjs/common';
+import { Catch, HttpStatus } from '@nestjs/common';
 import { AbstractExceptionFilter } from './abstract-exception.filter';
 import { CustomExceptionReponse } from './custom-exception-response.interface';
 
