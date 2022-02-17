@@ -15,7 +15,9 @@ export class UserEntity {
     @Column({ length: 200 })
     email: string;
 
-    @Exclude()
+    @Exclude({
+        toPlainOnly: true
+    })
     @MinLength(4)
     @Column({ length: 200 })
     password: string;

@@ -1,15 +1,16 @@
 import { Body, Controller, HttpStatus, Inject, Post } from '@nestjs/common';
 import { CreateUserService } from 'src/services/users/create-user-service';
 import { NestResponse } from 'src/core/http/nest-response';
-import { NestResponseBuilder } from 'src/core/http/nest-response.builder';
-import { CustomResponse } from 'src/core/http/custom-response.interface';
+import { AbstractController } from './abstract-controller';
 
 @Controller('users')
-export class UsersController {
+export class UsersController extends AbstractController {
     constructor(
         @Inject('CreateUserService')
         private readonly createUserService: CreateUserService
-    ) {}
+    ) {
+        super();
+    }
 
     @Post('/register')
     register(@Body() user): NestResponse {
@@ -17,13 +18,5 @@ export class UsersController {
             HttpStatus.CREATED,
             this.createUserService.create(user)
         );
-    }
-
-    buildResponse(status, body, header = {}) {
-        return new NestResponseBuilder()
-            .setStatus(status)
-            .setHeader(header)
-            .setBody(body)
-            .build();
     }
 }
